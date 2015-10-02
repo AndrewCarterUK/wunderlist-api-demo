@@ -5,8 +5,8 @@ namespace Wunderlist;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
-class WunderlistClient {
-
+class WunderlistClient
+{
     /**
      * @var Client
      */
@@ -17,7 +17,8 @@ class WunderlistClient {
      *
      * @param Client $guzzle
      */
-    public function __construct(Client $guzzle) {
+    public function __construct(Client $guzzle)
+    {
         $this->guzzle = $guzzle;
     }
 
@@ -26,11 +27,11 @@ class WunderlistClient {
      *
      * @return mixed
      */
-    public function getLists() {
+    public function getLists()
+    {
         try {
             $response = $this->guzzle->get('lists');
-        }
-        catch(ClientException $e) {
+        } catch(ClientException $e) {
             return array();
         }
         return json_decode($response->getBody());
@@ -43,7 +44,8 @@ class WunderlistClient {
      *
      * @return mixed
      */
-    public function getList($id) {
+    public function getList($id)
+    {
         if (!is_numeric($id)) {
             return NULL;
         }
@@ -65,7 +67,8 @@ class WunderlistClient {
      *
      * @return array()
      */
-    public function getListTasks($list_id) {
+    public function getListTasks($list_id)
+    {
         if (!$list_id) {
             return array();
         }
@@ -86,7 +89,8 @@ class WunderlistClient {
      * @param $task
      * @return mixed
      */
-    public function createTask($task) {
+    public function createTask($task)
+    {
         try {
             $response = $this->guzzle->post('tasks', ['body' => json_encode($task)]);
         }
@@ -104,11 +108,11 @@ class WunderlistClient {
      * @param $revision
      * @return mixed
      */
-    public function completeTask($task_id, $revision) {
+    public function completeTask($task_id, $revision)
+    {
         try {
             $response = $this->guzzle->patch('tasks/' . $task_id, ['body' => json_encode(['revision' => (int) $revision, 'completed' => true])]);
-        }
-        catch (ClientException $e) {
+        } catch (ClientException $e) {
             return false;
         }
 
