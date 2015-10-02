@@ -14,13 +14,14 @@ $guzzle = new Client(
         'base_uri' => 'https://a.wunderlist.com/api/v1/',
         'headers' => [
             'Content-Type' => 'application/json',
-            'X-Client-ID' => $client_id,
-            'X-Access-Token' => $access_token,
+            'X-Client-ID' => $clientId,
+            'X-Access-Token' => $accessToken,
         ]
     ]
 );
+
 $wunderlist = new Wunderlist($guzzle);
 
-$tasks = $wunderlist->getListTasks($list_id);
+$tasks = $wunderlist->getListTasks($listId);
 
 echo $twig->render('list.html.twig', array('tasks' => $tasks));
