@@ -4,7 +4,7 @@ To use this demo code:
 * Create a file called `keys.php` in the root folder and add the following variables:
 
     ```
-    $client_id = 'your Wunderlist app client id';
-    $access_token = 'your Wunderlist app generated access token';
-    $list_id = 'the ID of a list from your Wunderlist account';
+    $clienId = 'your Wunderlist app client id';
+    $accessToken = 'your Wunderlist app generated access token';
+    $listId = 'the ID of a list from your Wunderlist account';
     ```
